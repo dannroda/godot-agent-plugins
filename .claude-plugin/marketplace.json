@@ -36,6 +36,118 @@
         "vfx",
         "lighting"
       ]
+    },
+    {
+      "name": "godot",
+      "source": {
+        "source": "github",
+        "repo": "gamedev-skills/awesome-gamedev-agent-skills"
+      },
+      "description": "Godot 4.7 engine skills (GDScript, nodes, physics, shaders, export, C#). From awesome-gamedev-agent-skills (Apache 2.0), installed from its repo.",
+      "author": {
+        "name": "awesome-gamedev-agent-skills contributors"
+      },
+      "homepage": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills",
+      "license": "Apache-2.0",
+      "category": "development",
+      "strict": false,
+      "skills": [
+        "./skills/godot/godot-gdscript",
+        "./skills/godot/godot-nodes-scenes",
+        "./skills/godot/godot-signals-groups",
+        "./skills/godot/godot-2d-movement",
+        "./skills/godot/godot-tilemap",
+        "./skills/godot/godot-physics",
+        "./skills/godot/godot-ui-control",
+        "./skills/godot/godot-animation",
+        "./skills/godot/godot-shaders",
+        "./skills/godot/godot-3d-essentials",
+        "./skills/godot/godot-resources",
+        "./skills/godot/godot-audio",
+        "./skills/godot/godot-multiplayer",
+        "./skills/godot/godot-export",
+        "./skills/godot/godot-csharp",
+        "./skills/godot/godot-gdscript-headless-testing"
+      ]
+    },
+    {
+      "name": "disciplines",
+      "source": {
+        "source": "github",
+        "repo": "gamedev-skills/awesome-gamedev-agent-skills"
+      },
+      "description": "Cross-engine concepts: visual assets, AI, procedural gen, dialogue, saves, audio, shaders, physics, level design, and input. From awesome-gamedev-agent-skills (Apache 2.0), installed from its repo.",
+      "author": {
+        "name": "awesome-gamedev-agent-skills contributors"
+      },
+      "homepage": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills",
+      "license": "Apache-2.0",
+      "category": "development",
+      "strict": false,
+      "skills": [
+        "./skills/disciplines/create-game-assets",
+        "./skills/disciplines/game-ai",
+        "./skills/disciplines/procedural-gen",
+        "./skills/disciplines/dialogue-systems",
+        "./skills/disciplines/save-systems",
+        "./skills/disciplines/audio-design",
+        "./skills/disciplines/shader-programming",
+        "./skills/disciplines/physics-tuning",
+        "./skills/disciplines/level-design",
+        "./skills/disciplines/input-systems",
+        "./skills/disciplines/game-feel",
+        "./skills/disciplines/game-ui-ux",
+        "./skills/disciplines/camera-systems",
+        "./skills/disciplines/performance-optimization",
+        "./skills/disciplines/ai-behavior-trees-utility-ai"
+      ]
+    },
+    {
+      "name": "genres",
+      "source": {
+        "source": "github",
+        "repo": "gamedev-skills/awesome-gamedev-agent-skills"
+      },
+      "description": "Compositional genre templates: platformer, roguelike, RPG, FPS, tower defense, card, visual novel, survival, puzzle. From awesome-gamedev-agent-skills (Apache 2.0), installed from its repo.",
+      "author": {
+        "name": "awesome-gamedev-agent-skills contributors"
+      },
+      "homepage": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills",
+      "license": "Apache-2.0",
+      "category": "development",
+      "strict": false,
+      "skills": [
+        "./skills/genres/platformer",
+        "./skills/genres/roguelike",
+        "./skills/genres/rpg",
+        "./skills/genres/fps-shooter",
+        "./skills/genres/tower-defense",
+        "./skills/genres/card-game",
+        "./skills/genres/visual-novel",
+        "./skills/genres/survival-crafting",
+        "./skills/genres/puzzle"
+      ]
+    },
+    {
+      "name": "workflows",
+      "source": {
+        "source": "github",
+        "repo": "gamedev-skills/awesome-gamedev-agent-skills"
+      },
+      "description": "Process and shipping skills: game jam, fast prototyping, Steam, itch.io. From awesome-gamedev-agent-skills (Apache 2.0), installed from its repo.",
+      "author": {
+        "name": "awesome-gamedev-agent-skills contributors"
+      },
+      "homepage": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills",
+      "license": "Apache-2.0",
+      "category": "development",
+      "strict": false,
+      "skills": [
+        "./skills/workflows/game-jam",
+        "./skills/workflows/prototype-fast",
+        "./skills/workflows/steam-publish",
+        "./skills/workflows/itch-publish"
+      ]
     }
   ]
 }
