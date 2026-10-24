@@ -1,0 +1,18 @@
+{
+  "name": "shaders",
+  "version": "0.1.0",
+  "description": "Non-trivial Godot 4.6+ shaders: coordinate spaces, custom light(), color spaces, normal maps, procedural shapes, vertex effects, post-processing, ray marching. Engine facts compile-checked on 4.6, 4.7 and 4.8.",
+  "author": {
+    "name": "Daniel Rodriguez Aires"
+  },
+  "homepage": "https://github.com/dannroda/godot-agent-plugins",
+  "repository": "https://github.com/dannroda/godot-agent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "godot",
+    "shaders",
+    "gdshader",
+    "vfx",
+    "lighting"
+  ]
+}

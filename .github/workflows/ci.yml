@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install -g @anthropic-ai/claude-code
+      - name: Validate the marketplace and each plugin
+        run: |
+          claude plugin validate --strict .
+          for plugin in plugins/*/; do
+            claude plugin validate --strict "$plugin"
+          done
+      - name: No local paths in the skills
+        run: "! grep -rnE '/home/|/Users/|[A-Z]:\\\\' plugins"

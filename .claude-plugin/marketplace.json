@@ -1,0 +1,41 @@
+{
+  "name": "godot-agent",
+  "owner": {
+    "name": "Daniel Rodriguez Aires"
+  },
+  "metadata": {
+    "description": "Skills and plugins for coding agents working on Godot 4 projects, from the Godot Agent Harness project.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "gdscript",
+      "source": "./plugins/gdscript",
+      "description": "Godot 4 GDScript design and review: architecture (Node vs Resource vs RefCounted, scenes, SOLID), how systems talk (signals, EventBus, autoloads, init order), gameplay patterns (state machines, components, pools, commands), data-driven content and saves, and a code review checklist.",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": [
+        "godot",
+        "gdscript",
+        "architecture",
+        "patterns",
+        "signals",
+        "code-review"
+      ]
+    },
+    {
+      "name": "shaders",
+      "source": "./plugins/shaders",
+      "description": "Non-trivial Godot 4.6+ shaders: coordinate spaces, custom light(), color spaces, normal maps, procedural shapes, vertex effects, post-processing, ray marching. Engine facts compile-checked on 4.6, 4.7 and 4.8.",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": [
+        "godot",
+        "shaders",
+        "gdshader",
+        "vfx",
+        "lighting"
+      ]
+    }
+  ]
+}
