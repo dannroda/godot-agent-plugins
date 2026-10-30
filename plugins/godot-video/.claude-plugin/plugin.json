@@ -1,0 +1,18 @@
+{
+  "name": "godot-video",
+  "version": "0.1.0",
+  "description": "Make videos from a Godot 4 game using real footage: repeatable Movie Maker capture, trailers, game design document explainers and code-to-result development films. Needs only Godot and ffmpeg.",
+  "author": {
+    "name": "Daniel Rodriguez Aires"
+  },
+  "homepage": "https://github.com/dannroda/godot-agent-plugins",
+  "repository": "https://github.com/dannroda/godot-agent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "godot",
+    "trailer",
+    "gdd",
+    "devlog",
+    "movie-maker"
+  ]
+}

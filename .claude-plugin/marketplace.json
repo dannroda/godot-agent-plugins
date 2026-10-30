@@ -4,8 +4,8 @@
     "name": "Daniel Rodriguez Aires"
   },
   "metadata": {
-    "description": "Skills and plugins for coding agents working on Godot 4 projects, from the Godot Agent Harness project.",
-    "version": "0.1.0"
+    "description": "Skills for coding agents working on Godot 4 games: GDScript, shaders, Blender assets and game videos, from the Godot Agent Harness project.",
+    "version": "0.2.0"
   },
   "plugins": [
     {
@@ -35,6 +35,34 @@
         "gdshader",
         "vfx",
         "lighting"
+      ]
+    },
+    {
+      "name": "blender",
+      "source": "./plugins/blender",
+      "description": "Blender 5 for Godot games: build and check 3D assets with headless Python, then export them to Godot 4 with the right scale, axes, collisions, materials and animations. Checked on Blender 5.2 and Godot 4.7.",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": [
+        "blender",
+        "bpy",
+        "gltf",
+        "godot",
+        "3d-assets"
+      ]
+    },
+    {
+      "name": "godot-video",
+      "source": "./plugins/godot-video",
+      "description": "Make videos from a Godot 4 game using real footage: repeatable Movie Maker capture, trailers, game design document explainers and code-to-result development films. Needs only Godot and ffmpeg.",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": [
+        "godot",
+        "trailer",
+        "gdd",
+        "devlog",
+        "movie-maker"
       ]
     },
     {
