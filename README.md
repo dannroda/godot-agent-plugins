@@ -49,7 +49,7 @@ Or from a terminal: `claude plugin marketplace add dannroda/godot-agent-plugins`
 
 The skills cite two books for further reading, by chapter and page: *Godot 4 Best Practices* and *The Godot Shaders Bible*. The text and code are original; they summarize and check the ideas against the engine (shader facts are compile-checked on Godot 4.6, 4.7 and 4.8). Buy the books for the full explanations.
 
-The `blender`, `godot-video` and `godot-testing` facts were checked by running them on Blender 5.2.3, Godot 4.7.2 and ffmpeg 9.0.
+The `blender`, `godot-video` and `godot-testing` facts were checked by running them on Blender 5.2.3, Godot 4.7.2 and 4.8 beta 2, and ffmpeg 9.0.
 
 The skills work in any agent, but they've only been tested on Linux. The commands that record or test the game with no visible window use `gamescope` or Xvfb, which are Linux-only; on other systems, run the game normally and don't touch the mouse.
 

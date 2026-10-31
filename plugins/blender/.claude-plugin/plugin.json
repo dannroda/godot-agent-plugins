@@ -1,6 +1,6 @@
 {
   "name": "blender",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Blender 5 for Godot games: build and check 3D assets with headless Python, then export them to Godot 4 with the right scale, axes, collisions, materials and animations. Checked on Blender 5.2 and Godot 4.7.",
   "author": {
     "name": "Daniel Rodriguez Aires"

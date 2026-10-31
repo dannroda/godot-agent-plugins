@@ -62,7 +62,7 @@ Loading cost (instantiate is synchronous):
 
 Never `load(...).instantiate()` inside a hot gameplay call. Add threaded loading only when a hitch is felt or measured.
 
-Deeper: Godot 4 Best Practices ch.2 "When to use scenes" to "Extending scripts into the editor", PDF pp. 57–70 (local PDF above)
+Deeper: Godot 4 Best Practices ch.2 "When to use scenes" to "Extending scripts into the editor", PDF pp. 57–70
 
 ## 3. Reuse: instancing vs inheritance vs composition
 
@@ -82,7 +82,7 @@ Rules:
 - Shared identity plus capabilities is the common shape: base scene `enemy_base.tscn` + components (`Hurtbox`, `Health`) + per-enemy `.tres`.
 - Prototype first. Extract a component or base when the second or third copy appears.
 
-Deeper: Godot 4 Best Practices ch.2 "Balancing composition and inheritance", PDF pp. 70–80, and ch.3 "Using Inherited Scenes for specialization", PDF pp. 86–87 (local PDF above)
+Deeper: Godot 4 Best Practices ch.2 "Balancing composition and inheritance", PDF pp. 70–80, and ch.3 "Using Inherited Scenes for specialization", PDF pp. 86–87
 
 ## 4. Scene hierarchy rules
 
@@ -110,7 +110,7 @@ Bloat diagnosis:
 | Nodes that only hold data | Resource / RefCounted |
 | Hitch when a level opens | Spawn heavy content on demand; threaded load |
 
-Deeper: Godot 4 Best Practices ch.3 "Creating modular scene hierarchies" to "Troubleshooting Scene Tree bloat", PDF pp. 83–101 (local PDF above)
+Deeper: Godot 4 Best Practices ch.3 "Creating modular scene hierarchies" to "Troubleshooting Scene Tree bloat", PDF pp. 83–101
 
 ## 5. SOLID in Godot (smell → fix)
 
@@ -128,7 +128,7 @@ Capability checks, strictest first: `is BaseClass` → component lookup → grou
 
 Skip the ceremony in jams and for one-off bosses. Full treatment: `references/solid-in-godot.md`.
 
-Deeper: Godot 4 Best Practices ch.1 "Applying SOLID Principles in Godot", PDF pp. 28–54 (local PDF above)
+Deeper: Godot 4 Best Practices ch.1 "Applying SOLID Principles in Godot", PDF pp. 28–54
 
 ## 6. Project layout (default: feature-based)
 
@@ -155,7 +155,7 @@ res://
 - **Agents with editor tools** (`godot.*` MCP tools, as in the Godot Agent Harness): create and edit scenes through them, write scripts with the file tools, and never write `.tscn`/`.uid`/`.import` or project files from the shell.
 - **Agents editing files on disk:** scripts have sidecar `.uid` files (4.4+). Move or rename a file together with its `.uid` and fix `path=` in the referencing `.tscn`/`.tres`, or do the move in the editor's FileSystem dock. Prefer `@export var scene: PackedScene` over path strings.
 
-Deeper: Godot 4 Best Practices ch.1 "Organizing for scalability", PDF p. 54, and ch.3 "Naming conventions for teams" and "Project folder organization", PDF pp. 94–96 (local PDF above)
+Deeper: Godot 4 Best Practices ch.1 "Organizing for scalability", PDF p. 54, and ch.3 "Naming conventions for teams" and "Project folder organization", PDF pp. 94–96
 
 ## 7. Data-driven design
 
@@ -183,7 +183,7 @@ External data and mods (details in godot-data-driven):
 - JSON is zero-trust: check that the file exists, `JSON.parse()` returns `OK`, the root type is right, each key exists with the right `typeof()`, and values are clamped. On failure, `push_warning()`, skip the entry and keep running.
 - Mods: read from `user://mods/`, not `res://` (the exported .pck is sealed). Load images with `Image.load_from_file()` → `ImageTexture.create_from_image()` after validating. Mods supply data, never `.tres`/`.gd` to execute, unless that is an explicit, sandboxed design choice.
 
-Deeper: Godot 4 Best Practices ch.4 "Using Resources for data" and "Data-driven patterns in Godot", PDF pp. 117–127 (local PDF above)
+Deeper: Godot 4 Best Practices ch.4 "Using Resources for data" and "Data-driven patterns in Godot", PDF pp. 117–127
 
 ## 8. Macro-architecture (mid/large projects)
 

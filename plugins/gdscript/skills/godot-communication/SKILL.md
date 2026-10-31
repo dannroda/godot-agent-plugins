@@ -106,7 +106,9 @@ Rules:
 extends Node
 var combat := CombatEvents.new()
 var ui := UIEvents.new()
+```
 
+```gdscript
 # combat_events.gd
 class_name CombatEvents extends RefCounted
 @warning_ignore_start("unused_signal")
@@ -220,11 +222,7 @@ func _ready() -> void:
 ```
 - The creator calls `setup()` **before** `add_child()`, so `_ready` already has everything.
 - Writing the autoload name directly (`Audio.play(...)`) is a compile-time dependency: the script fails to parse in a project without that autoload. Leaf objects (pickups, props, components) emit signals and let the level wire them to services. Only coordinators talk to autoloads.
-- For a contract, use an `@abstract` base class (4.5+). Both the real autoload script and the test fake extend it:
-```gdscript
-@abstract class_name AudioPort extends Node
-@abstract func play_sfx(stream: AudioStream, at: Vector2 = Vector2.INF) -> void
-```
+- For a contract, use an `@abstract` base class (4.5+). Both the real autoload script and the test fake extend it: see `references/autoloads-and-services.md`, section 8.
 - Duck typing (`has_method(&"x")`) is the loose fallback for unrelated objects. It is untyped and fails silently on typos. Prefer `is SomeType`, a shared abstract base, or a component lookup.
 
 Deeper: Godot 4 Best Practices ch.5 "Using dependency injection with Singletons", PDF pp. 147–150

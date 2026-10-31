@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Skills for coding agents working on Godot 4 games: GDScript, shaders, Blender assets and game videos, from the Godot Agent Harness project.",
-    "version": "0.3.0"
+    "version": "0.4.0"
   },
   "plugins": [
     {
       "name": "gdscript",
       "source": "./plugins/gdscript",
       "description": "Godot 4 GDScript design and review: architecture (Node vs Resource vs RefCounted, scenes, SOLID), how systems talk (signals, EventBus, autoloads, init order), gameplay patterns (state machines, components, pools, commands), data-driven content and saves, and a code review checklist.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "keywords": [
         "godot",
@@ -41,7 +41,7 @@
       "name": "blender",
       "source": "./plugins/blender",
       "description": "Blender 5 for Godot games: build and check 3D assets with headless Python, then export them to Godot 4 with the right scale, axes, collisions, materials and animations. Checked on Blender 5.2 and Godot 4.7.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "keywords": [
         "blender",
@@ -69,7 +69,7 @@
       "name": "godot-testing",
       "source": "./plugins/godot-testing",
       "description": "Check a Godot 4 game by running it: repeatable screenshot tests with a diff of what changed, and before and after performance comparisons of frame, GPU and script time, draw calls, nodes and memory.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "keywords": [
         "godot",

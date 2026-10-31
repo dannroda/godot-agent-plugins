@@ -7,7 +7,7 @@ description: "Use when you need to see whether a change altered how a Godot 4 ga
 
 An agent can change a game without seeing it. This plays a scripted run, saves screenshots at chosen frames and compares them, pixel by pixel, with images a person approved.
 
-Checked on Godot 4.7.2 with a real Forward+ game: repeated runs on one machine produced byte-identical PNGs, so the comparison defaults to **zero tolerance**.
+Checked on Godot 4.7.2 and 4.8 beta 2 with a real Forward+ game: repeated runs on one machine produced byte-identical PNGs, so the comparison defaults to **zero tolerance**.
 
 ## Set up a test
 
@@ -60,7 +60,7 @@ Loose settings hide real problems: with `--tolerance=8 --max-percent=0.1`, that 
 
 ## Baselines
 
-- Keep one baseline folder per GPU and renderer, such as `baselines/rx580-forward-plus/`. Other hardware or drivers may round differently, and a different renderer certainly will. Pixel results aren't portable between machines unless you've measured it.
+- Keep one baseline folder per GPU, renderer and Godot version, such as `baselines/rx580-forward-plus-4.7/`. Other hardware or drivers may round differently, and a different renderer certainly will. Between 4.7.2 and 4.8 beta 2, the same frame changed in up to 14% of its pixels, each by one level out of 255, so review a diff like that before replacing baselines after an upgrade. Pixel results aren't portable between machines unless you've measured it.
 - Before trusting a new baseline, run it twice and compare the runs. If they differ, fix that first (next section).
 - Look at each baseline before approving it. It only records what the game did, right or wrong. If you can't view images, ask the user.
 - When a test fails, look at the diff. If the change was intended, tell the user and replace that baseline, and say so in the commit. Never replace a baseline just to get the test to pass.

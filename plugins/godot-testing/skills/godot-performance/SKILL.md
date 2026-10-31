@@ -5,7 +5,7 @@ description: "Use when checking whether a change made a Godot 4 game slower or h
 
 # Godot performance
 
-This runs the same stretch of the game before and after a change, and compares the reports. Checked on Godot 4.7.2 with a real Forward+ game.
+This runs the same stretch of the game before and after a change, and compares the reports. Checked on Godot 4.7.2 and 4.8 beta 2 with a real Forward+ game.
 
 ## Set up
 

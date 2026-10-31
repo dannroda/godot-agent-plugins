@@ -1,6 +1,6 @@
 {
   "name": "gdscript",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Godot 4 GDScript design and review: architecture (Node vs Resource vs RefCounted, scenes, SOLID), how systems talk (signals, EventBus, autoloads, init order), gameplay patterns (state machines, components, pools, commands), data-driven content and saves, and a code review checklist.",
   "author": {
     "name": "Daniel Rodriguez Aires"

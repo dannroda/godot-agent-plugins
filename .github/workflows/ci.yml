@@ -21,3 +21,21 @@ jobs:
           done
       - name: No local paths in the skills
         run: "! grep -rnE '/home/|/Users/|[A-Z]:\\\\' plugins"
+      - name: Install ffmpeg and Godot
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          curl -sSfL -o godot.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -q godot.zip -d godot-bin
+          mv godot-bin/Godot_v4.7.2-stable_linux.x86_64 godot-bin/godot
+          echo "$PWD/godot-bin" >> "$GITHUB_PATH"
+      - name: Test the skill scripts
+        run: |
+          for test in plugins/*/skills/*/scripts/test_*.py; do
+            (cd "$(dirname "$test")" && python3 "$(basename "$test")")
+          done
+      - name: Compile the skill GDScript files
+        run: |
+          mkdir empty-project
+          printf 'config_version=5\n' > empty-project/project.godot
+          godot --headless --path empty-project --script "$PWD/scripts/check_gd_scripts.gd" -- $(find "$PWD/plugins" -name '*.gd')

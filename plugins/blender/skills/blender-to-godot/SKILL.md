@@ -5,7 +5,7 @@ description: "Use when moving assets from Blender to Godot 4: glTF/GLB export se
 
 # Blender to Godot
 
-Every table row was observed by exporting from Blender 5.2.3 and importing into Godot 4.7.2 headless, then reading the node tree. On other versions, rerun the check at the end.
+Every table row was observed by exporting from Blender 5.2.3 and importing into Godot 4.7.2 and 4.8 beta 2 headless, then reading the node tree. On other versions, rerun the check at the end.
 
 ## Export
 

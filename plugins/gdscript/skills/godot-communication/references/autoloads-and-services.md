@@ -185,7 +185,9 @@ func load_slot(slot: int) -> Dictionary:
 ```gdscript
 @abstract class_name AudioPort extends Node
 @abstract func play_sfx(stream: AudioStream, at: Vector2 = Vector2.INF) -> void
+```
 
+```gdscript
 # tests/fake_audio.gd
 class_name FakeAudio extends AudioPort
 var played: Array[AudioStream] = []

@@ -42,7 +42,9 @@ func _physics_process(delta: float) -> void:
 ```gdscript
 @abstract class_name HitEffect extends Resource  # @abstract: 4.5+
 @abstract func apply(target: Node, source: Node) -> void
+```
 
+```gdscript
 # weapon.gd: closed for modification
 @export var on_hit: Array[HitEffect] = []
 func _resolve_hit(target: Node) -> void:

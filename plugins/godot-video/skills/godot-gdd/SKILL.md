@@ -11,7 +11,15 @@ If there are several design documents and none is clearly current, ask which one
 
 ## 1. Read everything
 
-Read the whole document, including open questions and revision notes, then the relevant scripts, scenes and tests. Run the game and the tests where possible. Reading code shows that a feature exists, not that it works.
+Read the whole document, including open questions and revision notes, then the relevant scripts, scenes and tests. A README that states the rules counts as a design document. Run the game and the tests where possible. Reading code shows that a feature exists, not that it works.
+
+Many rules can be checked without a window. In a copy of the project, a `SceneTree` script can load the main scene, read values and call the game's own functions, then run through play at high speed:
+
+```bash
+godot --headless --path copy --fixed-fps 60 --script res://gdd_check.gd -- 1
+```
+
+Take the seed from the arguments and repeat with several seeds, since one run proves little about balance or randomness: on the test game, six seeded runs in seconds confirmed a claim about when an idle player loses. Headless runs can't confirm visuals, so a claim about something on screen stays **Built** until it's been seen.
 
 ## 2. Write the status ledger
 
@@ -25,7 +33,7 @@ Read the whole document, including open questions and revision notes, then the r
 
 Use one status per row:
 
-- **Verified:** seen running, or a test passes that really covers it.
+- **Verified:** seen running, a test passes that really covers it, or a script ran the real game code. Note how many runs.
 - **Built:** the code exists, but nothing has run it yet.
 - **Partial:** part of the claim holds; say which part.
 - **Differs:** the game does something else. Don't decide which is right.

@@ -8,7 +8,10 @@ const BACKGROUND := Color(0.05, 0.05, 0.09)
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
-	assert(args.size() >= 2, "pass SECONDS and TITLE after --")
+	if args.size() < 2:
+		printerr("pass SECONDS and TITLE after --")
+		quit(1)
+		return
 	var seconds := args[0].to_float()
 	var layout := CenterContainer.new()
 	layout.set_anchors_preset(Control.PRESET_FULL_RECT)

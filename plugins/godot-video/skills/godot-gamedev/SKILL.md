@@ -28,7 +28,7 @@ Changing a value and showing both versions is often the clearest proof. Do it in
 
 ## 3. Show the code
 
-Render excerpts from the actual file at the recorded commit, so they can't drift. Use large type: if it can't be read on a laptop at normal size, cut lines. Build the code panel as a Godot scene, or take a real editor screenshot. If you build something that looks like the editor, label it as a reconstruction.
+Show excerpts from the actual file at the recorded commit, so they can't drift. Use `code_card.gd` from `godot-capture`, or a real editor screenshot. If the text must shrink to fit, or can't be read on a laptop at normal size, use fewer or shorter lines. If you build something that looks like the editor, label it as a reconstruction.
 
 ## 4. Record the evidence
 

@@ -5,7 +5,7 @@ description: "Use when recording footage from a Godot 4 game for any video: Movi
 
 # Godot capture
 
-Checked on Godot 4.7.2 and ffmpeg 9.0. This produces repeatable footage from a real run of the game.
+Checked on Godot 4.7.2 and 4.8 beta 2, and ffmpeg 9.0. This produces repeatable footage from a real run of the game.
 
 ## Work on a copy
 
@@ -97,6 +97,12 @@ godot --path copy --fixed-fps 24 --write-movie "$PWD/card.avi" --script <skill>/
 ```
 
 Choose cuts from the final take. Any change to the run can move them: on the test game, hiding the HUD made the same script finish 2 seconds later, with a different battle.
+
+Code excerpts: `scripts/code_card.gd` records lines straight from the source file, so they can't drift from it. Long lines shrink the text, and it prints a notice when they do:
+
+```bash
+godot --path copy --fixed-fps 24 --write-movie "$PWD/code.avi" --script <skill>/scripts/code_card.gd -- 4 "$PWD/copy/player.gd" 88 94
+```
 
 Cut each take, in a consistent format so they can be joined (match `-r` to the takes):
 

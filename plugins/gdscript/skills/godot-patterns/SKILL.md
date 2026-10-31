@@ -73,13 +73,17 @@ Use when the caller always does "the same thing" and only the algorithm varies. 
 @export var cooldown: float = 0.25
 @export var projectile: PackedScene
 @abstract func fire(ctx: FireContext) -> void
+```
 
+```gdscript
 # fire_context.gd: everything the strategy needs from the world
 class_name FireContext extends RefCounted
 var origin: Transform2D
 var container: Node     # where projectiles go (never the shooter: it would drag them)
 var shooter: Node2D
+```
 
+```gdscript
 # spread_shot.gd
 class_name SpreadShot extends WeaponStrategy
 @export var count: int = 3
@@ -206,38 +210,17 @@ Full `NodePool` (tested): `references/spawning-and-pooling.md`. Audio voice pool
 
 ## 6. Builder (and when a config object is enough)
 
-Use for one object assembled in many optional steps: a procedural room, a generated dialog or tooltip, a debug menu.
+Use for one object assembled in many optional steps: a procedural room, a generated dialog or tooltip, a debug menu. Each step returns `self`, and `build()` hands over the result:
 
 ```gdscript
-class_name DialogBuilder extends RefCounted
-var _root := VBoxContainer.new()
-
-func title(text: String) -> DialogBuilder:
-    var l := Label.new()
-    l.text = text
-    _root.add_child(l)
-    return self
-
-func button(text: String, on_press: Callable) -> DialogBuilder:
-    var b := Button.new()
-    b.text = text
-    b.pressed.connect(on_press)
-    _root.add_child(b)
-    return self
-
-func build() -> Control:
-    var out := _root
-    _root = null
-    return out
-
-func _notification(what: int) -> void:
-    if what == NOTIFICATION_PREDELETE and is_instance_valid(_root):
-        _root.free()  # never built: Nodes aren't ref-counted, so they would leak
+add_child(DialogBuilder.new().title("Merchant").button("Buy potion", _buy_potion).build())
 ```
-Usage: `add_child(DialogBuilder.new().title("Merchant").button("Buy potion", _buy_potion).build())`. Wrap multi-line chains in parentheses, or end lines with `\`.
+Wrap multi-line chains in parentheses, or end lines with `\`.
 
+- Free the unbuilt root in `_notification(NOTIFICATION_PREDELETE)`. Nodes aren't ref-counted, so an abandoned builder would leak them.
 - Static, designer-owned UI is built in the editor. Builders are for content that is data-dependent at runtime. Inside a builder, instance small `.tscn` parts instead of styling nodes in code.
-- `@tool` previews: nodes added in the editor without `owner` set are not saved into the scene, which is what you want for previews. Clear old preview children before rebuilding.
+
+Full builder, `@tool` preview and a factory vs builder table: `references/spawning-and-pooling.md`.
 
 When not: an object with 1–2 settings (use a factory or config object); a static menu.
 
@@ -253,7 +236,9 @@ class_name Command extends RefCounted
 func execute(_actor: Node) -> void: pass  # may await; then callers must await it
 func undo(_actor: Node) -> void: pass
 func is_undoable() -> bool: return false
+```
 
+```gdscript
 # move_command.gd
 class_name MoveCommand extends Command
 var direction: Vector2

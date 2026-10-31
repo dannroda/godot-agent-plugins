@@ -21,7 +21,9 @@ class_name Command extends RefCounted
 func execute(_actor: Node) -> void: pass
 func undo(_actor: Node) -> void: pass
 func is_undoable() -> bool: return false
+```
 
+```gdscript
 # ship.gd: the receiver
 class_name Ship extends CharacterBody2D
 @export var speed: float = 300.0
@@ -31,7 +33,9 @@ func steer(dir: Vector2) -> void:
     move_and_slide()
 func fire() -> void:
     _shots += 1  # spawn via a spawner in real code
+```
 
+```gdscript
 # move_command.gd / fire_command.gd
 class_name MoveCommand extends Command
 var direction: Vector2
@@ -47,7 +51,9 @@ func execute(actor: Node) -> void:
     var ship := actor as Ship
     if ship:
         ship.fire()
+```
 
+```gdscript
 # command_source.gd: player, AI, network and replay all implement this
 class_name CommandSource extends Node
 func poll() -> Array[Command]:
@@ -61,7 +67,9 @@ func poll() -> Array[Command]:
     if Input.is_action_just_pressed(&"fire"):
         out.append(FireCommand.new())
     return out
+```
 
+```gdscript
 # actor_controller.gd: the invoker for action games
 class_name ActorController extends Node
 @export var actor: Node
