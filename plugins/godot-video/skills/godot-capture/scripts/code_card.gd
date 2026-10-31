@@ -41,9 +41,10 @@ func _initialize() -> void:
 	margin.add_child(column)
 	var font := SystemFont.new()
 	font.font_names = PackedStringArray(["monospace"])
-	var title := "%s:%d-%d" % [args[1].get_file(), first, last] if args.size() < 5 else args[4]
+	var range_text := str(first) if first == last else "%d-%d" % [first, last]
+	var title := "%s:%s" % [args[1].get_file(), range_text] if args.size() < 5 else args[4]
 	column.add_child(_label(title, font, int(height * 0.028), HEADER))
-	var excerpt := "\n".join(lines.slice(first - 1, last)).replace("\t", "    ")
+	var excerpt := _without_shared_indent(lines.slice(first - 1, last))
 	# Long lines shrink the text instead of running off the edge.
 	var size := int(height * 0.045)
 	var available := width * 0.9
@@ -57,6 +58,19 @@ func _initialize() -> void:
 	margin.create_tween().tween_property(margin, "modulate:a", 1.0, FADE_SECONDS)
 	await create_timer(args[0].to_float()).timeout
 	quit()
+
+
+## Keeps the code as written, but starts it at the left edge.
+func _without_shared_indent(lines: PackedStringArray) -> String:
+	var shared := -1
+	for line in lines:
+		if not line.strip_edges().is_empty():
+			var indent := line.length() - line.lstrip("\t ").length()
+			shared = indent if shared < 0 else mini(shared, indent)
+	var kept := PackedStringArray()
+	for line in lines:
+		kept.append(line.substr(maxi(shared, 0)).replace("\t", "    "))
+	return "\n".join(kept)
 
 
 func _label(text: String, font: Font, size: int, color: Color) -> Label:

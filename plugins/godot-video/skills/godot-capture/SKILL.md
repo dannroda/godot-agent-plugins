@@ -96,7 +96,7 @@ Text cards: `scripts/title_card.gd` in this skill records one with the project's
 godot --path copy --fixed-fps 24 --write-movie "$PWD/card.avi" --script <skill>/scripts/title_card.gd -- 3.5 "TITLE" "Subtitle"
 ```
 
-Choose cuts from the final take. Any change to the run can move them: on the test game, hiding the HUD made the same script finish 2 seconds later, with a different battle.
+Choose cuts from the final take. Long runs may not repeat, even with a fixed seed and fixed frame rate: on the test game, the same scripted battle ended differently in six runs. If a claim depends on one, say how many runs you checked, and if a shot must be redone, check the cuts again.
 
 Code excerpts: `scripts/code_card.gd` records lines straight from the source file, so they can't drift from it. Long lines shrink the text, and it prints a notice when they do:
 

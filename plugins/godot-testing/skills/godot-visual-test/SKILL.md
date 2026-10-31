@@ -61,7 +61,7 @@ Loose settings hide real problems: with `--tolerance=8 --max-percent=0.1`, that 
 ## Baselines
 
 - Keep one baseline folder per GPU, renderer and Godot version, such as `baselines/rx580-forward-plus-4.7/`. Other hardware or drivers may round differently, and a different renderer certainly will. Between 4.7.2 and 4.8 beta 2, the same frame changed in up to 14% of its pixels, each by one level out of 255, so review a diff like that before replacing baselines after an upgrade. Pixel results aren't portable between machines unless you've measured it.
-- Before trusting a new baseline, run it twice and compare the runs. If they differ, fix that first (next section).
+- Before trusting a new baseline, run it twice and compare the runs. If they differ, fix that first (next section). Passing early doesn't guarantee later frames: on the test game the first 8 seconds were identical, while a longer scripted battle ended differently each time. So check each checkpoint, especially late ones.
 - Look at each baseline before approving it. It only records what the game did, right or wrong. If you can't view images, ask the user.
 - When a test fails, look at the diff. If the change was intended, tell the user and replace that baseline, and say so in the commit. Never replace a baseline just to get the test to pass.
 
