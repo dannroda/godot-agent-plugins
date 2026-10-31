@@ -43,7 +43,7 @@ Generators may not follow a requested tempo, and tempo detection can be wrong to
    python3 <skill>/scripts/analyze_music.py trailer/music.mp3
    ```
 
-   Up to three candidates appear, often including half or double the real tempo. Choose the one nearest the requested BPM. An empty list means no clear pulse: ask the user for the tempo, or don't cut to a grid.
+   If you requested a BPM, try it first, even if it isn't listed: on a Gemini track asked for 120 BPM, the candidates were 60.3, 200.3 and 63.1, and a grid at exactly 120 fit within 10 ms. Otherwise, up to three candidates appear, and they may be half or double the real tempo. An empty list means no clear pulse: ask the user for the tempo, or don't cut to a grid.
 2. Build the grid, plus a copy of the track with a click on every beat:
 
    ```bash
@@ -60,10 +60,27 @@ If the tempo changes during the track, one grid can't fit it. Cut by ear, or on 
 
 - `beats` and `bars`: times to cut on, starting from `first_beat_seconds`.
 - `grid_offset_ms`: the largest distance found between the grid and the beat in any quarter of the track.
-- `hits`: sharp jumps in volume, each with its `real_time` and `nearest_beat`. These don't depend on the grid, so they're the most reliable cut points.
+- `hits`: sharp jumps in volume, each with its `real_time` and `nearest_beat`. They don't depend on the grid. In a dense track many are just strong drum hits, so listen to choose the ones that matter; a jump after a quiet section is usually the one to build around.
 - `warnings`, plus `bpm_candidates`.
 
-## 4. Feed into `godot-trailer`
+## 4. Fit the Track to the Edit
+
+Generators may ignore the requested length: that Gemini track came back at 125 s for a 28 s request. Expect to edit it:
+
+1. Find the moment to build around, such as the first big hit, and match it to the biggest moment in the story, not just any cut. Check the exact frame, then start the excerpt so the hit lands on it. To put a hit at 24.14 s on a moment at 12 s, start at 12.12 s, since a hit can register slightly before its measured time.
+2. Offer a version with no join whenever possible: the last stretch of the track, ending naturally, or a fade over the end card. Joins are the riskiest edit here.
+3. If you need the track's real ending too, join only on a bar line, at the same point in the phrase on both sides: jump by a whole multiple of 4 bars, and try to place it right after a big hit. Compare the harmony and level on each side if you have the tools. A join that ignored this was audibly wrong on the test track; one that followed it was found by checking many pairs.
+
+   ```bash
+   ffmpeg -y -ss 7.14 -to 26.205 -i music.mp3 -c:a pcm_s16le part1.wav
+   ffmpeg -y -ss 113.955 -to 123.14 -i music.mp3 -c:a pcm_s16le part2.wav
+   ffmpeg -y -i part1.wav -i part2.wav -filter_complex "[0][1]acrossfade=d=0.25:c1=qsin:c2=qsin" edit.wav
+   ```
+
+   Each side overlaps the bar line by half the fade, here 0.125 s. The fade shortens the total by its own length.
+4. Numbers can't tell whether a join sounds right. Ask the user to listen, and give them a no-join version to compare.
+
+## 5. Feed into `godot-trailer`
 
 Use `music.analysis.json` when building `shots.md` in `godot-trailer`:
 - Place regular shot cuts on **bars** (starting from `first_beat_seconds`).
@@ -71,7 +88,7 @@ Use `music.analysis.json` when building `shots.md` in `godot-trailer`:
 - Align big moments and title drops with `real_time` from `hits`.
 - Align the end card exactly with the final **stinger**.
 
-## 5. Check Before Final Render
+## 6. Check Before Final Render
 
 1. Verify waveforms and detected peaks:
    ```bash
@@ -85,4 +102,4 @@ Use `music.analysis.json` when building `shots.md` in `godot-trailer`:
 
 Run `python3 test_trailer_music.py` in the `scripts` folder after changing them. Cases that use real synthesized music are skipped if `game-music` isn't installed.
 
-Timings were checked on tracks made by `game-music`, with known beats. They haven't been checked on a track from an external generator.
+Timings were checked on tracks made by `game-music`, with known beats, and on one track from the Gemini app, where tempos from 119.5 to 120.5 BPM could be told apart. One track says little about other generators or genres.

@@ -25,7 +25,7 @@ If the second answer doesn't fit in one sentence, stop and settle it with the us
 
 A dependable default, to change whenever the game calls for it:
 
-1. **First seconds:** the most striking real moment, with no logo before it.
+1. **First seconds:** real gameplay, with no logo before it. Ask the user whether to open on the most striking moment or on the premise. Opening on the climax can spoil the payoff: on the test game, the user preferred to build from day to night and save the wall falling.
 2. **The rule:** one or two shots that make clear what the player does.
 3. **Escalation:** the same idea, bigger each time. Variety only counts if it builds.
 4. **Peak:** the biggest moment, then a sharp cut.
@@ -48,7 +48,7 @@ Follow `godot-capture`. Hide debug text, and hide the HUD unless a shot needs it
 
 ## 5. Edit to music
 
-Prefer music from the user, with its license noted in `CREDITS.md`. If they have none, generate a simple track from the cut list with the `game-music` skill, and tell them it's a synthetic placeholder. With a known tempo, one beat lasts `60 / BPM` seconds, so a list of cut points can come from it. Cut on strong beats and save the biggest hit for the peak. Cut on the beat where it helps, and don't force a shot that needs longer to read. Make sure the ending lands on the music, not during a fade-out in silence.
+Prefer music from the user, with its license noted in `CREDITS.md`. If they have none, generate a simple track from the cut list with the `game-music` skill, and tell them it's a synthetic placeholder. With a known tempo, one beat lasts `60 / BPM` seconds, so a list of cut points can come from it. Don't cut between two moments of one continuous shot unless the framing changes clearly: skipping a few seconds, or even half a second, reads as a stutter, not a cut. Keep the shot running, or cut to something distinct. Cut on strong beats and save the biggest hit for the peak. Cut on the beat where it helps, and don't force a shot that needs longer to read. Make sure the ending lands on the music, not during a fade-out in silence.
 
 Narration is optional, and most trailers don't need it. If the user wants it, use their voice or a tool they choose, and keep each line tied to what's on screen.
 
