@@ -54,8 +54,8 @@
     {
       "name": "godot-video",
       "source": "./plugins/godot-video",
-      "description": "Make videos from a Godot 4 game using real footage: repeatable Movie Maker capture, trailers, simple synthesized music, game design document explainers and code-to-result development films. Needs only Godot, ffmpeg and Python.",
-      "version": "0.2.0",
+      "description": "Make videos from a Godot 4 game using real footage: repeatable Movie Maker capture, trailers, simple synthesized music, requests for external music generators, game design document explainers and code-to-result development films. Needs only Godot, ffmpeg and Python.",
+      "version": "0.3.0",
       "category": "development",
       "keywords": [
         "godot",

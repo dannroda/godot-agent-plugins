@@ -7,7 +7,7 @@ Skills for coding agents working on Godot 4 games. They come from the [Godot Age
 | `gdscript` | `godot-architecture`, `godot-communication`, `godot-patterns`, `godot-data-driven`, `godot-code-review` | Designing and reviewing GDScript: where code and data live, signals and autoloads, state machines, components, pools, commands, Resources, saves and mods, and a review checklist. |
 | `shaders` | `godot-shader-techniques` | Non-trivial Godot 4.6+ shaders: spaces and matrices, custom `light()`, color spaces, normal maps, procedural shapes, vertex effects, post-processing and ray marching. |
 | `blender` | `blender-scripting`, `blender-to-godot` | Build and check assets with headless Blender 5 Python, then bring them to Godot with the right axes, collisions, materials and animations. |
-| `godot-video` | `godot-capture`, `godot-trailer`, `game-music`, `godot-gdd`, `godot-gamedev` | Videos from real footage of your game: repeatable capture, trailers with simple generated music, design document checks and explainers, and development films. Needs only Godot, ffmpeg and Python. |
+| `godot-video` | `godot-capture`, `godot-trailer`, `game-music`, `trailer-music`, `godot-gdd`, `godot-gamedev` | Videos from real footage of your game: repeatable capture, trailers with structured prompt and cue analysis, simple generated music, design document checks and explainers, and development films. Needs only Godot, ffmpeg and Python. |
 | `godot-testing` | `godot-visual-test`, `godot-performance` | Check the game by running it: screenshot tests against approved images, and before and after performance comparisons. |
 
 These skills go past the basics. For the basics, the Claude Code marketplace also lists four plugins from [awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills) (Apache 2.0). They install straight from that repo, so you get its updates; nothing is copied here.
@@ -50,6 +50,8 @@ Or from a terminal: `claude plugin marketplace add dannroda/godot-agent-plugins`
 The skills cite two books for further reading, by chapter and page: *Godot 4 Best Practices* and *The Godot Shaders Bible*. The text and code are original; they summarize and check the ideas against the engine (shader facts are compile-checked on Godot 4.6, 4.7 and 4.8). Buy the books for the full explanations.
 
 The `blender`, `godot-video` and `godot-testing` facts were checked by running them on Blender 5.2.3, Godot 4.7.2 and ffmpeg 9.0.
+
+The skills work in any agent, but they've only been tested on Linux. The commands that record or test the game with no visible window use `gamescope` or Xvfb, which are Linux-only; on other systems, run the game normally and don't touch the mouse.
 
 ## Contributing
 
