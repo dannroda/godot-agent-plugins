@@ -15,7 +15,7 @@ Play the build and read its source, then fill this in. Ask the user for what you
 |---|---|
 | Who is it for? | Fans of short tactical roguelikes |
 | What's the one thing no other game gives them? | You rewind time, but your past self stays in the level |
-| What must they do at the end? | Wishlist on Steam (a single action, with a real URL) |
+| What must they do at the end? | Wishlist on Steam (a single action, with a real URL; if none exists yet, say so on the card or leave it out, never invent one) |
 | How long? | 30 to 90 seconds; shorter if the idea is simple |
 | What state is the build in? | Early access, so label footage if it will change |
 
@@ -44,7 +44,7 @@ Check each shot against the running build. A shot of something not in the build 
 
 ## 4. Record
 
-Follow `godot-capture`. Hide debug text, and record more than each shot needs, so cuts have room. Build title and end cards as Godot scenes using the game's own fonts and record them the same way, so they match the game.
+Follow `godot-capture`. Hide debug text, and hide the HUD unless a shot needs it: at trailer size its text is too small to read, and it competes with the action. Record more than each shot needs, so cuts have room. Record text cards with the `title_card.gd` script in `godot-capture`, so they use the game's font, or as your own Godot scenes.
 
 ## 5. Edit to music
 

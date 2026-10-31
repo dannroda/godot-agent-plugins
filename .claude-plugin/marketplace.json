@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Skills for coding agents working on Godot 4 games: GDScript, shaders, Blender assets and game videos, from the Godot Agent Harness project.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
@@ -55,7 +55,7 @@
       "name": "godot-video",
       "source": "./plugins/godot-video",
       "description": "Make videos from a Godot 4 game using real footage: repeatable Movie Maker capture, trailers, game design document explainers and code-to-result development films. Needs only Godot and ffmpeg.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "keywords": [
         "godot",
@@ -63,6 +63,20 @@
         "gdd",
         "devlog",
         "movie-maker"
+      ]
+    },
+    {
+      "name": "godot-testing",
+      "source": "./plugins/godot-testing",
+      "description": "Check a Godot 4 game by running it: repeatable screenshot tests with a diff of what changed, and before and after performance comparisons of frame, GPU and script time, draw calls, nodes and memory.",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": [
+        "godot",
+        "testing",
+        "visual-regression",
+        "performance",
+        "ci"
       ]
     },
     {

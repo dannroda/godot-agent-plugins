@@ -1,0 +1,18 @@
+{
+  "name": "godot-testing",
+  "version": "0.1.0",
+  "description": "Check a Godot 4 game by running it: repeatable screenshot tests with a diff of what changed, and before and after performance comparisons of frame, GPU and script time, draw calls, nodes and memory.",
+  "author": {
+    "name": "Daniel Rodriguez Aires"
+  },
+  "homepage": "https://github.com/dannroda/godot-agent-plugins",
+  "repository": "https://github.com/dannroda/godot-agent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "godot",
+    "testing",
+    "visual-regression",
+    "performance",
+    "ci"
+  ]
+}
