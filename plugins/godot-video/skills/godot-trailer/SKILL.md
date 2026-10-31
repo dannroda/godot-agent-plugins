@@ -48,7 +48,7 @@ Follow `godot-capture`. Hide debug text, and hide the HUD unless a shot needs it
 
 ## 5. Edit to music
 
-Music comes from the user, with its license noted in `CREDITS.md`. With a known tempo, one beat lasts `60 / BPM` seconds, so a list of cut points can come from it. Cut on strong beats and save the biggest hit for the peak. Cut on the beat where it helps, and don't force a shot that needs longer to read. Make sure the ending lands on the music, not during a fade-out in silence.
+Prefer music from the user, with its license noted in `CREDITS.md`. If they have none, generate a simple track from the cut list with the `game-music` skill, and tell them it's a synthetic placeholder. With a known tempo, one beat lasts `60 / BPM` seconds, so a list of cut points can come from it. Cut on strong beats and save the biggest hit for the peak. Cut on the beat where it helps, and don't force a shot that needs longer to read. Make sure the ending lands on the music, not during a fade-out in silence.
 
 Narration is optional, and most trailers don't need it. If the user wants it, use their voice or a tool they choose, and keep each line tied to what's on screen.
 

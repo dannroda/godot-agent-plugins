@@ -114,10 +114,10 @@ Add music, fade the end and export. `-shortest` stops at the shorter input; set 
 
 ```bash
 ffmpeg -y -i picture.mp4 -i music.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest \
-  -af "afade=t=out:st=58:d=2,loudnorm=I=-14:TP=-1:LRA=11" -movflags +faststart final.mp4
+  -af "afade=t=out:st=58:d=2,loudnorm=I=-14:TP=-1:LRA=11,alimiter=limit=0.8:level=false" -movflags +faststart final.mp4
 ```
 
-Keep `-ar 48000`: `loudnorm` otherwise raises the output to 192 kHz, and the file measured above 0 dBFS. To keep game sound, cut without `-an`, and mix it with the music using `amix`.
+Keep `-ar 48000`: `loudnorm` otherwise raises the output to 192 kHz, and the file measured above 0 dBFS. Keep `alimiter` too: a track with strong hits still passed 0 dBFS without it. Leave out `afade` if the track already ends by itself. To keep game sound, cut without `-an`, and mix it with the music using `amix`.
 
 ## Check the result
 
