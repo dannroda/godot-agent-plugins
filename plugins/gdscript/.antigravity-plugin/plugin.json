@@ -1,0 +1,16 @@
+{
+  "name": "gdscript",
+  "displayName": "Godot GDScript",
+  "description": "Godot 4 GDScript design and review: architecture (Node vs Resource vs RefCounted, scenes, SOLID), how systems talk (signals, EventBus, autoloads, init order), gameplay patterns (state machines, components, pools, commands), data-driven content and saves, and a code review checklist.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Daniel Rodriguez Aires"
+  },
+  "homepage": "https://github.com/dannroda/godot-agent-plugins",
+  "repository": "https://github.com/dannroda/godot-agent-plugins",
+  "suggestedPrompts": [
+    "Review this GDScript for architecture smells and lifecycle bugs",
+    "Should this be a Node, a Resource or a RefCounted?",
+    "Replace this boolean-flag player code with a state machine"
+  ]
+}

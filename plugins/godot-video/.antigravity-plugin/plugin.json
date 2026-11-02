@@ -1,0 +1,16 @@
+{
+  "name": "godot-video",
+  "displayName": "Godot Video",
+  "description": "Make videos from a Godot 4 game using real footage: repeatable Movie Maker capture, trailers, simple synthesized music, requests for external music generators, game design document explainers and code-to-result development films. Needs only Godot, ffmpeg and Python.",
+  "version": "0.3.0",
+  "author": {
+    "name": "Daniel Rodriguez Aires"
+  },
+  "homepage": "https://github.com/dannroda/godot-agent-plugins",
+  "repository": "https://github.com/dannroda/godot-agent-plugins",
+  "suggestedPrompts": [
+    "Capture repeatable gameplay footage with Movie Maker",
+    "Cut a 30-second trailer from real footage of my game",
+    "Check my game design document against the project"
+  ]
+}
