@@ -45,6 +45,17 @@ In Claude Code, as plugins:
 
 Or from a terminal: `claude plugin marketplace add dannroda/godot-agent-plugins`, then `claude plugin install gdscript@godot-agent`.
 
+In Google Antigravity, `agy plugin install` takes the same plugin folders and converts them as it installs them; no separate version is kept for it. Clone the repo, install the plugins you want, then restart Antigravity:
+
+```
+git clone https://github.com/dannroda/godot-agent-plugins
+agy plugin install godot-agent-plugins/plugins/gdscript
+agy plugin install godot-agent-plugins/plugins/shaders
+agy plugin install godot-agent-plugins/plugins/blender
+agy plugin install godot-agent-plugins/plugins/godot-video
+agy plugin install godot-agent-plugins/plugins/godot-testing
+```
+
 ## Sources
 
 The skills cite two books for further reading, by chapter and page: *Godot 4 Best Practices* and *The Godot Shaders Bible*. The text and code are original; they summarize and check the ideas against the engine (shader facts are compile-checked on Godot 4.6, 4.7 and 4.8). Buy the books for the full explanations.
