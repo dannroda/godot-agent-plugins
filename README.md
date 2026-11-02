@@ -45,7 +45,7 @@ In Claude Code, as plugins:
 
 Or from a terminal: `claude plugin marketplace add dannroda/godot-agent-plugins`, then `claude plugin install gdscript@godot-agent`.
 
-In Google Antigravity, as plugins: each plugin folder has a `.antigravity-plugin/plugin.json`, so Antigravity loads the same skills. Clone the repo and install the plugins you want, then restart Antigravity:
+In Google Antigravity, `agy plugin install` takes the same plugin folders and converts them as it installs them; no separate version is kept for it. Clone the repo, install the plugins you want, then restart Antigravity:
 
 ```
 git clone https://github.com/dannroda/godot-agent-plugins
@@ -55,8 +55,6 @@ agy plugin install godot-agent-plugins/plugins/blender
 agy plugin install godot-agent-plugins/plugins/godot-video
 agy plugin install godot-agent-plugins/plugins/godot-testing
 ```
-
-To use them in one project only, copy the plugin folders to `.agents/plugins/` in that project.
 
 ## Sources
 

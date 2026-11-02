@@ -19,8 +19,6 @@ jobs:
           for plugin in plugins/*/; do
             claude plugin validate --strict "$plugin"
           done
-      - name: Antigravity manifests match the Claude Code ones
-        run: python3 scripts/sync_antigravity.py --check
       - name: No local paths in the skills
         run: "! grep -rnE '/home/|/Users/|[A-Z]:\\\\' plugins"
       - name: Install ffmpeg and Godot
