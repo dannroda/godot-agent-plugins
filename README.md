@@ -6,6 +6,7 @@ Skills for coding agents working on Godot 4 games. They come from the [Godot Age
 |---|---|---|
 | `gdscript` | `godot-architecture`, `godot-communication`, `godot-patterns`, `godot-data-driven`, `godot-code-review` | Designing and reviewing GDScript: where code and data live, signals and autoloads, state machines, components, pools, commands, Resources, saves and mods, and a review checklist. |
 | `shaders` | `godot-shader-techniques` | Non-trivial Godot 4.6+ shaders: spaces and matrices, custom `light()`, color spaces, normal maps, procedural shapes, vertex effects, post-processing and ray marching. |
+| `gdextension` | `gdextension-cpp`, `gdextension-build`, `gdextension-debug`, `gdextension-wrap-library` | C++ GDExtensions with godot-cpp 10: bindings, builds and exports for each platform, crashes and leaks, and wrapping C or C++ libraries. Tested headless, never in the open editor. |
 | `blender` | `blender-scripting`, `blender-to-godot` | Build and check assets with headless Blender 5 Python, then bring them to Godot with the right axes, collisions, materials and animations. |
 | `godot-video` | `godot-capture`, `godot-trailer`, `game-music`, `trailer-music`, `godot-gdd`, `godot-gamedev` | Videos from real footage of your game: repeatable capture, trailers with structured prompt and cue analysis, simple generated music, design document checks and explainers, and development films. Needs only Godot, ffmpeg and Python. |
 | `godot-testing` | `godot-visual-test`, `godot-performance` | Check the game by running it: screenshot tests against approved images, and before and after performance comparisons. |
@@ -29,7 +30,7 @@ Any agent, with the [skills CLI](https://github.com/vercel-labs/skills), which a
 npx skills add dannroda/godot-agent-plugins
 ```
 
-Without it, copy the skill folders you want (`plugins/<plugin>/skills/<skill>/`) to the folder your agent reads, often `.agents/skills/` in your project. Skills in `godot-video` name `godot-capture`, so install it with them.
+Without it, copy the skill folders you want (`plugins/<plugin>/skills/<skill>/`) to the folder your agent reads, often `.agents/skills/` in your project. Skills in `godot-video` name `godot-capture`, and skills in `gdextension` name `gdextension-cpp`, so install those with them.
 
 In Claude Code, as plugins:
 
@@ -37,6 +38,7 @@ In Claude Code, as plugins:
 /plugin marketplace add dannroda/godot-agent-plugins
 /plugin install gdscript@godot-agent
 /plugin install shaders@godot-agent
+/plugin install gdextension@godot-agent
 /plugin install godot@godot-agent
 /plugin install blender@godot-agent
 /plugin install godot-video@godot-agent
@@ -51,6 +53,7 @@ In Google Antigravity, `agy plugin install` takes the same plugin folders and co
 git clone https://github.com/dannroda/godot-agent-plugins
 agy plugin install godot-agent-plugins/plugins/gdscript
 agy plugin install godot-agent-plugins/plugins/shaders
+agy plugin install godot-agent-plugins/plugins/gdextension
 agy plugin install godot-agent-plugins/plugins/blender
 agy plugin install godot-agent-plugins/plugins/godot-video
 agy plugin install godot-agent-plugins/plugins/godot-testing
@@ -60,7 +63,7 @@ agy plugin install godot-agent-plugins/plugins/godot-testing
 
 The skills cite two books for further reading, by chapter and page: *Godot 4 Best Practices* and *The Godot Shaders Bible*. The text and code are original; they summarize and check the ideas against the engine (shader facts are compile-checked on Godot 4.6, 4.7 and 4.8). Buy the books for the full explanations.
 
-The `blender`, `godot-video` and `godot-testing` facts were checked by running them on Blender 5.2.3, Godot 4.7.2 and 4.8 beta 2, and ffmpeg 9.0.
+The `blender`, `godot-video` and `godot-testing` facts were checked by running them on Blender 5.2.3, Godot 4.7.2 and 4.8 beta 2, and ffmpeg 9.0. The `gdextension` facts were checked by building a test extension with godot-cpp 10.0.0 and running it on Godot 4.7.2 and 4.8 beta 2.
 
 The skills work in any agent, but they've only been tested on Linux. The commands that record or test the game with no visible window use `gamescope` or Xvfb, which are Linux-only; on other systems, run the game normally and don't touch the mouse.
 

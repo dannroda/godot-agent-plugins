@@ -4,8 +4,8 @@
     "name": "Daniel Rodriguez Aires"
   },
   "metadata": {
-    "description": "Skills for coding agents working on Godot 4 games: GDScript, shaders, Blender assets and game videos, from the Godot Agent Harness project.",
-    "version": "0.4.0"
+    "description": "Skills for coding agents working on Godot 4 games: GDScript, shaders, C++ GDExtensions, Blender assets and game videos, from the Godot Agent Harness project.",
+    "version": "0.5.0"
   },
   "plugins": [
     {
@@ -35,6 +35,20 @@
         "gdshader",
         "vfx",
         "lighting"
+      ]
+    },
+    {
+      "name": "gdextension",
+      "source": "./plugins/gdextension",
+      "description": "Godot 4 GDExtensions in C++ with godot-cpp 10: project setup and bindings, builds and exports for each platform, debugging crashes and leaks, and wrapping C or C++ libraries. Checked on Godot 4.7.2 and 4.8 beta 2.",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": [
+        "godot",
+        "gdextension",
+        "godot-cpp",
+        "cpp",
+        "native"
       ]
     },
     {
