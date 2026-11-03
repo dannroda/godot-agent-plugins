@@ -19,6 +19,14 @@ Use it for hot loops GDScript can't make fast enough, for an existing C or C++ l
 
 A segfault in the extension takes the whole editor down with it, along with the agent driving it. A library replaced under a running editor isn't reloaded either, unless hot reload is set up (below). Build, then test in a separate headless Godot on the test project, and tell the user when to restart their editor.
 
+**Check first whether the editor has tools for this.** The Godot Agent Harness (v0.1.17 and later) has three `godot.*` tools that don't appear in the tool list: find them with `godot.methods` and call them with `godot.run {"method": "build_extension", "params": {...}}`. With them, the loop is:
+
+1. `build_extension {target?, args?}` runs SCons, CMake or Cargo for the project (it finds the `SConstruct` next to an open `project/` folder) and returns compiler errors by file and line. It never loads the build, and asks permission like a shell command.
+2. `test_extension {tests?: "res://tests", classes?: [...], timeout_s?}` runs the tests below in a separate headless Godot, with its own copy of the runner, and returns failed checks, load errors and, after a crash, the backtrace of the extension's frames.
+3. `restart_editor` loads the new build into the user's editor, only after the tests pass. Under the harness's crash supervisor, a build that crashes the editor while starting is rolled back (see `gdextension-debug`) and the session continues with the backtrace.
+
+Without these tools, use the shell commands in this plugin and ask the user to restart their editor.
+
 ## Project layout
 
 godot-cpp-template (github.com/godotengine/godot-cpp-template) has this layout. The skills in this plugin assume it:
@@ -185,7 +193,7 @@ Built without it, a reload in the editor printed `Unable to recreate GDExtension
 
 ## Test headless
 
-Copy `scripts/extension_tests.gd` to the test project. Put tests in `project/tests/test_*.gd`:
+With the harness tools, `test_extension` runs these tests with its own copy of the runner; skip the copy and the commands. Without them, copy `scripts/extension_tests.gd` to the test project. Put tests in `project/tests/test_*.gd`:
 
 ```gdscript
 extends RefCounted

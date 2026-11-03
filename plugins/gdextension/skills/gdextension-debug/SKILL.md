@@ -16,7 +16,18 @@ godot --headless --import --path project
 timeout 120 godot --headless --path project --script res://extension_tests.gd -- --dir=res://tests
 ```
 
+With the Godot Agent Harness tools, `godot.run {"method": "test_extension", ...}` does this: it imports when a `.gdextension` isn't registered yet (except in the project the editor has open), runs the tests headless, and after a crash returns only the extension's frames, resolved to function and line with `addr2line` when the build has `debug_symbols=yes`. Use `addr2line` and `gdb` by hand, below, for crashes it doesn't reproduce.
+
 To reproduce something that only happens in the editor, run the editor headless on a copy: `timeout 60 godot --headless --editor --path copy res://scene.tscn --quit-after 200`. It opens the scene, runs editor-side code such as `_process` in the editor, then quits.
+
+## Builds the harness rolled back
+
+The harness's `restart_editor` runs the editor under a crash supervisor. When a new build crashes the editor while it starts, the supervisor:
+- renames each changed library to `<file>.crashed` and puts back the last copy that started fine;
+- renames a `.gdextension` with no good copy (it never started fine) to `<name>.gdextension.disabled`;
+- reopens the editor, and the agent's session continues with a message naming those files and the backtrace.
+
+Debug the `.crashed` library headless, as above. After the fix, rebuild, and rename the `.gdextension.disabled` file back to `.gdextension`: until then, neither the editor nor exports load the extension. Delete the `.crashed` files once you're done with them.
 
 ## Load errors
 

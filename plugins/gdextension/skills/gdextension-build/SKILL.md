@@ -19,6 +19,10 @@ Layout and terms follow `gdextension-cpp`: sources in `src/`, test project in `p
 
 The editor loads the `debug` entry, so `template_debug` is enough for development. Build `editor` only for code that must exist only in the editor (`#ifdef TOOLS_ENABLED`).
 
+## With the Godot Agent Harness
+
+When the editor has the harness's `godot.*` tools (v0.1.17 and later), build with `godot.run {"method": "build_extension", "params": {"target": "template_debug", "args": ["build_profile=build_profile.json"]}}` instead of the shell. It runs `scons -C <root> target=...`, CMake (configure, then build) or `cargo build`. It finds the build file in the open project, the folder above it (the template's `project/` layout) or a `rust/` folder, and returns errors by file and line for gcc, clang, rustc and MSVC. `args` take the SCons options below. It never loads the build: test with `test_extension` (see `gdextension-cpp`). Cross-compiling, `check_gdextension.py` and exports still go through the shell.
+
 ## SCons
 
 ```bash

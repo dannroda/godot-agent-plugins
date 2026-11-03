@@ -1,6 +1,6 @@
 {
   "name": "gdextension",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Godot 4 GDExtensions in C++ with godot-cpp 10: project setup and bindings, builds and exports for each platform, debugging crashes and leaks, and wrapping C or C++ libraries. Checked on Godot 4.7.2 and 4.8 beta 2.",
   "author": {
     "name": "Daniel Rodriguez Aires"
