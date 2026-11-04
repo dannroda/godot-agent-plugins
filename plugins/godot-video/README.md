@@ -1,6 +1,6 @@
 # godot-video
 
-- `godot-capture`: repeatable footage with Movie Maker and an input driver, and the ffmpeg recipes to assemble it. The other three skills use it, so install it with them.
+- `godot-capture`: repeatable footage with Movie Maker: record a person playing and replay it at 1080p, or drive simple shots with a script; plus the ffmpeg recipes to assemble it. The other three skills use it, so install it with them.
 - `godot-trailer`: a short trailer built around one hook.
 - `game-music`: simple synthesized instrumental music, with beats at exact times to cut on. Needs Python 3, with no model or network.
 - `trailer-music`: write requests for external music generators, such as the Gemini app or Suno, then build a beat grid from the track and check it by ear. Needs Python and ffmpeg.

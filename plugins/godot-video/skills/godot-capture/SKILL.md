@@ -1,31 +1,38 @@
 ---
 name: "godot-capture"
-description: "Use when recording footage from a Godot 4 game for any video: Movie Maker (--write-movie), a scripted input driver, setting resolution without editing the project, capture with no display, and ffmpeg recipes to trim, join, add music and export. Used by godot-trailer, godot-gdd and godot-gamedev."
+description: "Use when recording footage from a Godot 4 game for any video: Movie Maker (--write-movie), recording a person's play and replaying it at 1080p, a scripted input driver, setting resolution without editing the project, capture with no display, and ffmpeg recipes to trim, join, add music and export. Used by godot-trailer, godot-gdd and godot-gamedev."
 ---
 
 # Godot capture
 
-Checked on Godot 4.7.2 and 4.8 beta 2, and ffmpeg 9.0. This produces repeatable footage from a real run of the game.
+Checked on Godot 4.7.2 and 4.8 beta 2, and ffmpeg 9.0; record-and-replay on 4.5.1. This produces repeatable footage from a real run of the game.
+
+## Use the project's Godot version
+
+Read `config/features` in `project.godot` and run the matching binary, never whatever `godot` is on PATH; ask the user if unclear. On a 4.5 project, 4.7.2 raised typed-return errors that 4.5.1 doesn't. Reproduce an engine or script error on the project's version before reporting it as a game bug. `godot` below means that binary.
 
 ## Work on a copy
 
-Copy the project and capture from the copy. Capture files never belong in the game, and saves or settings may change during a run. Note the source commit, so you know which build the footage shows.
+Copy the project and capture from the copy. Capture files never belong in the game, and saves or settings may change during a run. Leave out `.git`, build output and secrets (such as `steam_cfg.b64`). Note the source commit, so you know which build the footage shows. An open editor may rewrite the project's `project.godot` meanwhile; don't blame the capture.
 
 ## Configure with `override.cfg`
 
-Put this at the root of the copy. Godot reads it on top of `project.godot`, which stays untouched:
+Put this at the root of the copy. Godot reads it on top of `project.godot`, which stays untouched. The user dir keeps the copy's saves and settings apart from the real ones:
 
 ```ini
-[display]
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+[application]
+config/use_custom_user_dir=true
+config/custom_user_dir_name="MyGame_capture"
 
 [editor]
-movie_writer/mjpeg_quality=0.95
+; mjpeg_quality, the older key, had no effect on 4.5.1
+movie_writer/video_quality=0.95
 
 [autoload]
 CaptureDriver="*res://capture_driver.gd"
 ```
+
+Before changing resolution, find out how the game scales its view: its stretch mode, and whether it draws the world into a SubViewport. Setting `window/size/viewport_width` and `viewport_height` to 1920x1080 broke a game that draws each room into a smaller SubViewport and scales it up: it showed area beyond the room.
 
 ## Record
 
@@ -37,7 +44,7 @@ godot --path copy --write-movie take01.avi --fixed-fps 60
 |---|---|
 | Output format | `.avi` (MJPEG + PCM audio), or `.png` for a frame sequence plus a `.wav`. `.mp4` aborts: `Can't find movie writer`. |
 | Relative output path | Written inside the project folder. |
-| `--resolution` | Did not change the recorded size. Use `override.cfg`. |
+| `--resolution` | Stretch mode `viewport`: recorded at the base viewport size anyway (4.5.1, 4.7.2). `canvas_items`: 4.5.1 renders the root at window size, so `--resolution` sets it; 4.7.2 stayed at the base size under Xvfb. |
 | `--headless` | Records nothing: a 0-byte file and a null texture error. A renderer is required. |
 | Real mouse | Moving the pointer over the window can change the footage, such as hover states and cursors that follow it. Record in a headless session, or don't touch the mouse. |
 | Headless session with GPU (Linux) | `gamescope --backend headless -W 1920 -H 1080 -w 1920 -h 1080 -- godot --path copy --write-movie "$PWD/take01.avi" --fixed-fps 60`. Real GPU and Forward+, with no window on the desktop. |
@@ -45,9 +52,15 @@ godot --path copy --write-movie take01.avi --fixed-fps 60
 | Time | The game runs on fixed time, so slow machines still give smooth video. |
 | Ending | `get_tree().quit()` or `--quit-after <frames>` closes the file properly. |
 
-## Input driver
+## Who plays
 
-Play through the game's normal input. Keep inputs in a timeline, so a take can be repeated and adjusted. Count in `_process`: with `--fixed-fps 30` and 60 physics ticks per second, `_physics_process` runs twice per video frame.
+The primary path: a person plays, and the game replays their inputs under Movie Maker. An enemy-aware scripted autopilot never produced convincing combat or climaxes. `scripts/replay_rec.gd` records and replays once its game hooks are filled in; `references/replay.md` has the commands, the determinism checklist and what was validated. If a scripted take fails to produce the intended moment in two attempts, stop and switch to a person playing.
+
+Pixel art: don't crop or zoom in post. The replay renders a native 1920x1080 view of the game's own world, with the game's exact camera or an integer-zoom follow, and needs no game changes. It recorded 1080p on 4.5.1; on 4.7.2 it stayed at the base viewport size.
+
+## Scripted input driver
+
+For simple, deterministic shots: UI, walking, title cards. Play through the game's normal input. Keep inputs in a timeline, so a take can be repeated and adjusted. Count in `_process`: with `--fixed-fps 30` and 60 physics ticks per second, `_physics_process` runs twice per video frame.
 
 ```gdscript
 extends Node
@@ -84,11 +97,13 @@ A driver may read game state to decide what to press. It must not move the playe
 
 ## Assemble with ffmpeg
 
-A 1080p take at the quality above uses about 4.5 MB per second, so check free disk space. To choose cuts, make a sheet with timestamps. Times start at the `-ss` value, so add it back:
+A 1080p take uses about 4.5 MB per second at the default quality, and more at 0.95, so check free disk space. To choose cuts, make a sheet with timestamps that starts at the first gameplay frame, after menus and loading. Times start at the `-ss` value, so add it back:
 
 ```bash
 ffmpeg -y -ss 24 -to 52 -i take01.avi -vf "fps=1/2,scale=384:-1,drawtext=text='%{pts\:flt}':x=4:y=4:fontsize=22:fontcolor=white:box=1:boxcolor=black,tile=4x4" -frames:v 1 sheet.png
 ```
+
+For several takes, `scripts/take_strips.sh` stacks one 1 fps strip per take into a single image, which is cheaper to review than a sheet per take.
 
 Text cards: `scripts/title_card.gd` in this skill records one with the project's font. Use the same `--fixed-fps` as the takes:
 

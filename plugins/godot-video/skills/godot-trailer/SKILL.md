@@ -15,9 +15,12 @@ Play the build and read its source, then fill this in. Ask the user for what you
 |---|---|
 | Who is it for? | Fans of short tactical roguelikes |
 | What's the one thing no other game gives them? | You rewind time, but your past self stays in the level |
-| What must they do at the end? | Wishlist on Steam (a single action, with a real URL; if none exists yet, say so on the card or leave it out, never invent one) |
+| What must they do at the end? | Wishlist on Steam (one action; never invent a store page) |
+| Is there a public demo? | Yes: the card says "Free demo on Steam" |
 | How long? | 30 to 90 seconds; shorter if the idea is simple |
 | What state is the build in? | Early access, so label footage if it will change |
+| Who plays the takes? | A person, by default for action games; a script only for UI, walking and title cards |
+| What does the player have in each area, and what must not be shown? | No dash before the second biome; never the final boss |
 
 If the second answer doesn't fit in one sentence, stop and settle it with the user. Everything else depends on it.
 
@@ -29,7 +32,9 @@ A dependable default, to change whenever the game calls for it:
 2. **The rule:** one or two shots that make clear what the player does.
 3. **Escalation:** the same idea, bigger each time. Variety only counts if it builds.
 4. **Peak:** the biggest moment, then a sharp cut.
-5. **End card:** title, platforms, one action.
+5. **End card:** the title and one action, "Wishlist on Steam" or, with a public demo, "Free demo on Steam". No URL or platforms: a user found both pointless there.
+
+`references/genres.md` adjusts this structure for the genres it lists.
 
 Text on screen stays short and readable on a phone. Words explain only what the footage can't.
 
@@ -37,14 +42,20 @@ Text on screen stays short and readable on a phone. Words explain only what the 
 
 `shots.md`, one row per shot:
 
-| # | Purpose | Footage | Seconds | Driver or manual | Take |
-|---|---|---|---|---|---|
+| # | Purpose | Footage | Seconds | Area and what's unlocked there | Person or script | Take |
+|---|---|---|---|---|---|---|
 
 Check each shot against the running build. A shot of something not in the build gets cut, not faked. It's fine for a shot to fail at this stage and change the plan.
 
+Every shot uses only what the player has unlocked where it's shot. Don't grant abilities with debug commands in areas the player reaches before them.
+
 ## 4. Record
 
-Follow `godot-capture`. Hide debug text, and hide the HUD unless a shot needs it: at trailer size its text is too small to read, and it competes with the action. Record more than each shot needs, so cuts have room. Record text cards with the `title_card.gd` script in `godot-capture`, so they use the game's font, or as your own Godot scenes.
+Follow `godot-capture`. For action, a person plays and the game re-renders the session: an enemy-aware scripted autopilot never produced convincing combat or climaxes. If a scripted take misses its moment twice, switch to a person playing.
+
+Check the room's triggers and spawn point before starting there: a debug teleport once put the player beside a trigger that killed them on spawn. Enter the way a player would, or run setup commands at fixed frames, identically when recording and replaying.
+
+Hide debug text, and hide the HUD unless a shot needs it: at trailer size its text is too small to read, and it competes with the action. Record more than each shot needs, so cuts have room. Record text cards with the `title_card.gd` script in `godot-capture`, so they use the game's font, or as your own Godot scenes.
 
 ## 5. Edit to music
 
