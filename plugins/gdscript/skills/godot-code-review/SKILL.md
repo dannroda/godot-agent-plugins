@@ -7,6 +7,8 @@ description: "Use when reviewing or refactoring Godot 4 GDScript, scenes or shad
 
 Report findings ranked by impact. For each one, give the file and line, the smell, a concrete failure scenario and the smallest fix. Point to the skill that holds the fix pattern: `godot-architecture`, `godot-patterns`, `godot-communication`, `godot-data-driven` or `godot-shader-techniques`. Don't suggest a pattern the project's scope doesn't justify.
 
+Before reading by hand, run the cheap checks: `godot-strict-checks` (the parser rejects made-up members and untyped code) and `godot-deslop`'s `find_slop.py` (template comments, empty callbacks, defensive noise). Spend the review on what they can't see.
+
 ## Coupling
 - [ ] `get_parent()`, `owner.` or `get_node("../..")` used to call behavior, or a child assuming its parent has a method (`get_parent().die()`) → emit a signal; the parent connects.
 - [ ] Long hardcoded paths (`$"../../UI/HUD/Label"`) → `@export` reference, `%UniqueName` inside the same scene, or a signal.
@@ -113,12 +115,15 @@ Report findings ranked by impact. For each one, give the file and line, the smel
 - [ ] With editor tools available (`godot.*` MCP tools), `.tscn`/`.uid`/`.import` written by hand, or project files written from the shell → use the scene tools for scenes and the file tools for scripts.
 - [ ] Files moved outside the editor without their `.uid`, or with stale `path=` references → move them together and fix the references, or move them in the FileSystem dock.
 
-## Over-engineering (flag these too)
+## Over-engineering and generated-code noise (flag these too; fixes in `godot-deslop`)
 - [ ] A pattern with a single implementation and no planned second one.
 - [ ] A state machine for something with two states.
 - [ ] Generic components used by one entity.
 - [ ] Dozens of tiny files with no folder structure.
 - [ ] A factory or builder wrapping a one-off object.
+- [ ] A Manager, Service or Handler with one caller; `@export`s, signals or parameters nobody uses.
+- [ ] Null checks on required `@onready` children, `x != null and is_instance_valid(x)`, `has_method` on your own types.
+- [ ] `_process` hand-rolling a Timer, Tween, `move_toward` or `Input.get_vector`; empty engine callbacks; comments that restate the code.
 
 ## Jam mode (game jam / prototype)
 When the project is a jam or prototype, review against shipping, not purity:
