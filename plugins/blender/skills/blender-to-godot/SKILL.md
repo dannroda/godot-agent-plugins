@@ -21,6 +21,17 @@ bpy.ops.export_scene.gltf(
 
 Export `.glb` files into the Godot project and keep the `.blend` outside it (see the `.blend` trap below). `use_selection=True` limits the export to selected objects.
 
+## Through the Godot editor
+
+When the Godot editor is open with the Godot Agent Harness addon, its MCP server does the import in the editor instead of the shell or a headless run:
+
+1. Export the `.glb` with the settings above to a temporary folder **outside** the project. Leave Draco compression off (`export_draco_mesh_compression_enable=False`, the default): a model that requires a glTF extension is refused.
+2. `import_model` from that file to a `res://` folder. It checks the glTF (size, embedded buffers and images, no files outside its folder, a sane node tree), copies it, waits for the import and returns the meshes, materials, animation names and size. It asks the user first, because the file is outside the project.
+3. `preview_model` on the imported file. It renders the model on its own from several angles. Check the facing direction (+Z, see below), the size and the materials before placing it. To fix something, export again and import with `replace: true`, which keeps the uid.
+4. `instantiate_scene` with `position`, `rotation_degrees` and `scale` places it in the open scene in one undo step.
+
+With these tools, skip the headless check at the end: `import_model` already reports the node tree's contents, and `preview_model` shows how the model looks.
+
 ## Geometry and transforms
 
 | In Blender | In Godot |
