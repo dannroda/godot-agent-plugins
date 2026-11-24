@@ -4,7 +4,7 @@ Skills for coding agents working on Godot 4 games. They come from the [Godot Age
 
 | Plugin | Skills | For |
 |---|---|---|
-| `gdscript` | `godot-architecture`, `godot-communication`, `godot-patterns`, `godot-data-driven`, `godot-code-review` | Designing and reviewing GDScript: where code and data live, signals and autoloads, state machines, components, pools, commands, Resources, saves and mods, and a review checklist. |
+| `gdscript` | `godot-architecture`, `godot-communication`, `godot-patterns`, `godot-data-driven`, `godot-code-review`, `godot-deslop`, `godot-strict-checks` | Designing and reviewing GDScript: where code and data live, signals and autoloads, state machines, components, pools, commands, Resources, saves and mods, a review checklist, cutting generated-code slop, and parser settings that reject made-up APIs. |
 | `shaders` | `godot-shader-techniques` | Non-trivial Godot 4.6+ shaders: spaces and matrices, custom `light()`, color spaces, normal maps, procedural shapes, vertex effects, post-processing and ray marching. |
 | `gdextension` | `gdextension-cpp`, `gdextension-build`, `gdextension-debug`, `gdextension-wrap-library` | C++ GDExtensions with godot-cpp 10: bindings, builds and exports for each platform, crashes and leaks, and wrapping C or C++ libraries. Tested headless, never in the open editor. |
 | `blender` | `blender-scripting`, `blender-to-godot` | Build and check assets with headless Blender 5 Python, then bring them to Godot with the right axes, collisions, materials and animations. |
@@ -30,7 +30,7 @@ Any agent, with the [skills CLI](https://github.com/vercel-labs/skills), which a
 npx skills add dannroda/godot-agent-plugins
 ```
 
-Without it, copy the skill folders you want (`plugins/<plugin>/skills/<skill>/`) to the folder your agent reads, often `.agents/skills/` in your project. Skills in `godot-video` name `godot-capture`, and skills in `gdextension` name `gdextension-cpp`, so install those with them.
+Without it, copy the skill folders you want (`plugins/<plugin>/skills/<skill>/`) to the folder your agent reads, often `.agents/skills/` in your project. Skills in `godot-video` name `godot-capture`, and skills in `gdextension` name `gdextension-cpp`, and `godot-deslop` names `godot-strict-checks`, so install those with them.
 
 In Claude Code, as plugins:
 

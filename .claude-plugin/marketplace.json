@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Skills for coding agents working on Godot 4 games: GDScript, shaders, C++ GDExtensions, Blender assets and game videos, from the Godot Agent Harness project.",
-    "version": "0.5.0"
+    "version": "0.6.0"
   },
   "plugins": [
     {
       "name": "gdscript",
       "source": "./plugins/gdscript",
-      "description": "Godot 4 GDScript design and review: architecture (Node vs Resource vs RefCounted, scenes, SOLID), how systems talk (signals, EventBus, autoloads, init order), gameplay patterns (state machines, components, pools, commands), data-driven content and saves, and a code review checklist.",
-      "version": "0.1.1",
+      "description": "Godot 4 GDScript design and review: architecture (Node vs Resource vs RefCounted, scenes, SOLID), how systems talk (signals, EventBus, autoloads, init order), gameplay patterns (state machines, components, pools, commands), data-driven content and saves, a code review checklist, removing slop from generated code, and strict parser checks that reject made-up APIs.",
+      "version": "0.2.0",
       "category": "development",
       "keywords": [
         "godot",
